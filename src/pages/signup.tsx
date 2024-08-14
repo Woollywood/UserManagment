@@ -16,10 +16,12 @@ type FormData = {
 };
 
 export default function SignupPage() {
+	const [isSuccess, setSuccess] = useState(false);
 	const {
 		register,
 		handleSubmit,
 		setError,
+		reset,
 		formState: { errors },
 	} = useForm<FormData>();
 	const onSubmit = handleSubmit(async ({ firstName, lastName, email, password, confirmPassword }) => {
@@ -39,6 +41,9 @@ export default function SignupPage() {
 				},
 			},
 		});
+
+		setSuccess(true);
+		reset();
 	});
 
 	const [isVisiblePassword, setIsVisiblePassword] = useState(false);
@@ -51,6 +56,21 @@ export default function SignupPage() {
 			case 'mismatch':
 				return 'Passwords mismatch';
 		}
+	}
+
+	if (isSuccess) {
+		return (
+			<div className='flex h-full items-center justify-center'>
+				<div className='mx-auto'>
+					<p className='mb-8 text-4xl'>The invitation has been sent to your email.</p>
+					<div className='flex items-center justify-center'>
+						<Button type='submit' onClick={() => setSuccess((prev) => !prev)}>
+							Back to form
+						</Button>
+					</div>
+				</div>
+			</div>
+		);
 	}
 
 	return (
