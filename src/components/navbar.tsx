@@ -1,4 +1,3 @@
-import { Button } from '@nextui-org/button';
 import { Kbd } from '@nextui-org/kbd';
 import { Link } from '@nextui-org/link';
 import { Input } from '@nextui-org/input';
@@ -16,7 +15,7 @@ import clsx from 'clsx';
 
 import { siteConfig } from '@/config/site';
 import { ThemeSwitch } from '@/components/theme-switch';
-import { TwitterIcon, GithubIcon, DiscordIcon, HeartFilledIcon, SearchIcon } from '@/components/icons';
+import { GithubIcon, SearchIcon } from '@/components/icons';
 import { Logo } from '@/components/icons';
 
 export const Navbar = () => {
@@ -67,29 +66,12 @@ export const Navbar = () => {
 
 			<NavbarContent className='hidden basis-1/5 sm:flex sm:basis-full' justify='end'>
 				<NavbarItem className='hidden gap-2 sm:flex'>
-					<Link isExternal href={siteConfig.links.twitter}>
-						<TwitterIcon className='text-default-500' />
-					</Link>
-					<Link isExternal href={siteConfig.links.discord}>
-						<DiscordIcon className='text-default-500' />
-					</Link>
 					<Link isExternal href={siteConfig.links.github}>
 						<GithubIcon className='text-default-500' />
 					</Link>
 					<ThemeSwitch />
 				</NavbarItem>
 				<NavbarItem className='hidden lg:flex'>{searchInput}</NavbarItem>
-				<NavbarItem className='hidden md:flex'>
-					<Button
-						isExternal
-						as={Link}
-						className='bg-default-100 text-sm font-normal text-default-600'
-						href={siteConfig.links.sponsor}
-						startContent={<HeartFilledIcon className='text-danger' />}
-						variant='flat'>
-						Sponsor
-					</Button>
-				</NavbarItem>
 			</NavbarContent>
 
 			<NavbarContent className='basis-1 pl-4 sm:hidden' justify='end'>
