@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Session } from '@supabase/supabase-js';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from '@/store';
+import { setSession, resetSession } from '@/stores/session';
 
 import { supabase } from '@/supabase';
 import DefaultLayout from '@/layouts/default';
@@ -11,15 +13,15 @@ import BlogPage from '@/pages/blog';
 import AboutPage from '@/pages/about';
 
 function App() {
-	const [session, setSession] = useState<Session | null>(null);
+	const dispatch = useDispatch<AppDispatch>();
 
 	useEffect(() => {
-		supabase.auth.getSession().then(({ data: { session } }) => {
-			setSession(session);
-		});
-
 		supabase.auth.onAuthStateChange((_event, session) => {
-			setSession(session);
+			if (session) {
+				dispatch(setSession(session));
+			} else {
+				dispatch(resetSession());
+			}
 		});
 	}, []);
 
