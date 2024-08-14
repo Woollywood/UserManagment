@@ -6,5 +6,5 @@
 	"printWidth": 120,
 	"jsxSingleQuote": true,
 	"singleQuote": true,
-	"vueIndentScriptAndStyle": true,
-  }
+	"vueIndentScriptAndStyle": true
+}
