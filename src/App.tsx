@@ -11,6 +11,8 @@ import DocsPage from '@/pages/docs';
 import PricingPage from '@/pages/pricing';
 import BlogPage from '@/pages/blog';
 import AboutPage from '@/pages/about';
+import SignIn from '@/pages/signin';
+import SignUp from '@/pages/signup';
 
 function App() {
 	const dispatch = useDispatch<AppDispatch>();
@@ -33,6 +35,8 @@ function App() {
 				<Route element={<PricingPage />} path='/pricing' />
 				<Route element={<BlogPage />} path='/blog' />
 				<Route element={<AboutPage />} path='/about' />
+				<Route element={<SignIn />} path='/sign-in' />
+				<Route element={<SignUp />} path='/sign-up' />
 			</Route>
 		</Routes>
 	);

@@ -1,6 +1,8 @@
+import { useSelector } from 'react-redux';
 import { Kbd } from '@nextui-org/kbd';
 import { Link } from '@nextui-org/link';
 import { Input } from '@nextui-org/input';
+import { Button } from '@nextui-org/button';
 import {
 	Navbar as NextUINavbar,
 	NavbarBrand,
@@ -12,11 +14,41 @@ import {
 } from '@nextui-org/navbar';
 import { link as linkStyles } from '@nextui-org/theme';
 import clsx from 'clsx';
+import { Skeleton } from '@nextui-org/skeleton';
 
+import { RootState } from '@/store';
 import { siteConfig } from '@/config/site';
 import { ThemeSwitch } from '@/components/theme-switch';
 import { GithubIcon, SearchIcon } from '@/components/icons';
 import { Logo } from '@/components/icons';
+
+function UserProfile() {
+	const { session, isComplete } = useSelector((state: RootState) => state.session);
+
+	return (
+		<>
+			{isComplete ? (
+				session?.user ? (
+					<div>has</div>
+				) : (
+					<div className='flex items-center gap-4'>
+						<Button as={Link} href='/sign-in' size='md'>
+							Sign in
+						</Button>
+
+						<Button as={Link} href='sign-up' size='md'>
+							Sign up
+						</Button>
+					</div>
+				)
+			) : (
+				<div>
+					<Skeleton className='flex h-12 w-12 rounded-full' />
+				</div>
+			)}
+		</>
+	);
+}
 
 export const Navbar = () => {
 	const searchInput = (
@@ -63,7 +95,6 @@ export const Navbar = () => {
 					))}
 				</div>
 			</NavbarContent>
-
 			<NavbarContent className='hidden basis-1/5 sm:flex sm:basis-full' justify='end'>
 				<NavbarItem className='hidden gap-2 sm:flex'>
 					<Link isExternal href={siteConfig.links.github}>
@@ -72,6 +103,7 @@ export const Navbar = () => {
 					<ThemeSwitch />
 				</NavbarItem>
 				<NavbarItem className='hidden lg:flex'>{searchInput}</NavbarItem>
+				<UserProfile />
 			</NavbarContent>
 
 			<NavbarContent className='basis-1 pl-4 sm:hidden' justify='end'>
