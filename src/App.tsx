@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@/store';
-import { setSession, resetSession } from '@/stores/session';
 
+import { AppDispatch } from '@/store';
 import { supabase } from '@/supabase';
+import { setSession, resetSession } from '@/stores/session';
 import DefaultLayout from '@/layouts/default';
 import IndexPage from '@/pages/index';
 import DocsPage from '@/pages/docs';
