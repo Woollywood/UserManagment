@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '@/store';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/store';
 import { setSession, resetSession } from '@/stores/session';
 
 import { supabase } from '@/supabase';
