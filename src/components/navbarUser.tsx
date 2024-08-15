@@ -1,0 +1,108 @@
+import { useSelector } from 'react-redux';
+import { Button } from '@nextui-org/button';
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from '@nextui-org/dropdown';
+import { Avatar } from '@nextui-org/avatar';
+import { User } from '@nextui-org/user';
+import { Skeleton } from '@nextui-org/skeleton';
+import { Link } from '@nextui-org/link';
+
+import { PlusIcon } from './icons';
+
+import { RootState } from '@/store';
+import { supabase } from '@/supabase';
+
+export default function NavbarUser() {
+	const { session, isComplete } = useSelector((state: RootState) => state.session);
+
+	async function signout() {
+		await supabase.auth.signOut();
+	}
+
+	return (
+		<>
+			{isComplete ? (
+				session?.user ? (
+					<Dropdown
+						showArrow
+						classNames={{
+							base: 'before:bg-default-200',
+							content: 'p-0 border-small border-divider bg-background',
+						}}
+						radius='sm'>
+						<DropdownTrigger>
+							<Avatar
+								isBordered
+								as='button'
+								className='transition-transform'
+								color='secondary'
+								name='Jason Hughes'
+								size='md'
+								src='https://i.pravatar.cc/150?u=a042581f4e29026704d'
+							/>
+						</DropdownTrigger>
+						<DropdownMenu
+							aria-label='Custom item styles'
+							className='p-3'
+							disabledKeys={['profile']}
+							itemClasses={{
+								base: [
+									'rounded-md',
+									'text-default-500',
+									'transition-opacity',
+									'data-[hover=true]:text-foreground',
+									'data-[hover=true]:bg-default-100',
+									'dark:data-[hover=true]:bg-default-50',
+									'data-[selectable=true]:focus:bg-default-50',
+									'data-[pressed=true]:opacity-70',
+									'data-[focus-visible=true]:ring-default-500',
+								],
+							}}>
+							<DropdownSection showDivider aria-label='Profile & Actions'>
+								<DropdownItem isReadOnly className='h-14 gap-2 opacity-100'>
+									<User
+										avatarProps={{
+											size: 'sm',
+											src: 'https://avatars.githubusercontent.com/u/30373425?v=4',
+										}}
+										classNames={{
+											name: 'text-default-600',
+											description: 'text-default-500',
+										}}
+										description='@jrgarciadev'
+										name='Junior Garcia'
+									/>
+								</DropdownItem>
+								<DropdownItem key='dashboard'>Dashboard</DropdownItem>
+								<DropdownItem key='settings'>Settings</DropdownItem>
+								<DropdownItem key='new_project' endContent={<PlusIcon className='text-large' />}>
+									New Project
+								</DropdownItem>
+							</DropdownSection>
+
+							<DropdownSection aria-label='Help & Feedback'>
+								<DropdownItem key='help_and_feedback'>Help & Feedback</DropdownItem>
+								<DropdownItem key='logout' onClick={signout}>
+									Log Out
+								</DropdownItem>
+							</DropdownSection>
+						</DropdownMenu>
+					</Dropdown>
+				) : (
+					<div className='flex items-center gap-4'>
+						<Button as={Link} href='/sign-in' size='md'>
+							Sign in
+						</Button>
+
+						<Button as={Link} href='sign-up' size='md'>
+							Sign up
+						</Button>
+					</div>
+				)
+			) : (
+				<div>
+					<Skeleton className='flex h-10 w-10 rounded-full' />
+				</div>
+			)}
+		</>
+	);
+}
