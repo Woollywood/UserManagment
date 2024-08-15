@@ -10,6 +10,7 @@ import { supabase } from '@/supabase';
 type FormData = {
 	firstName: string;
 	lastName: string;
+	username: string;
 	email: string;
 	password: string;
 	confirmPassword: string;
@@ -24,7 +25,7 @@ export default function SignupPage() {
 		reset,
 		formState: { errors },
 	} = useForm<FormData>();
-	const onSubmit = handleSubmit(async ({ firstName, lastName, email, password, confirmPassword }) => {
+	const onSubmit = handleSubmit(async ({ firstName, lastName, username, email, password, confirmPassword }) => {
 		if (password !== confirmPassword) {
 			setError('password', { type: 'mismatch' });
 			setError('confirmPassword', { type: 'mismatch' });
@@ -38,6 +39,7 @@ export default function SignupPage() {
 			options: {
 				data: {
 					full_name: `${firstName} ${lastName}`,
+					username,
 				},
 			},
 		});
@@ -100,6 +102,15 @@ export default function SignupPage() {
 							{...register('lastName', { required: true })}
 						/>
 					</div>
+					<Input
+						errorMessage='Please enter a username'
+						isInvalid={!!errors.username}
+						label='Username'
+						type='text'
+						{...register('username', {
+							required: true,
+						})}
+					/>
 					<Input
 						errorMessage='Please enter a valid email'
 						isInvalid={!!errors.email}

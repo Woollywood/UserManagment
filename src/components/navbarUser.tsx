@@ -12,7 +12,7 @@ import { RootState } from '@/store';
 import { supabase } from '@/supabase';
 
 export default function NavbarUser() {
-	const { session, isComplete } = useSelector((state: RootState) => state.session);
+	const { session, isComplete, profile } = useSelector((state: RootState) => state.session);
 
 	async function signout() {
 		await supabase.auth.signOut();
@@ -35,9 +35,9 @@ export default function NavbarUser() {
 								as='button'
 								className='transition-transform'
 								color='secondary'
-								name='Jason Hughes'
+								name={profile?.full_name!}
 								size='md'
-								src='https://i.pravatar.cc/150?u=a042581f4e29026704d'
+								src={profile?.avatar_url!}
 							/>
 						</DropdownTrigger>
 						<DropdownMenu
@@ -62,14 +62,14 @@ export default function NavbarUser() {
 									<User
 										avatarProps={{
 											size: 'sm',
-											src: 'https://avatars.githubusercontent.com/u/30373425?v=4',
+											src: profile?.avatar_url!,
 										}}
 										classNames={{
 											name: 'text-default-600',
 											description: 'text-default-500',
 										}}
-										description='@jrgarciadev'
-										name='Junior Garcia'
+										description={`@${profile?.username}`}
+										name={profile?.full_name!}
 									/>
 								</DropdownItem>
 								<DropdownItem key='dashboard' href='/dashboard'>
