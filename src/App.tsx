@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { AppDispatch } from '@/store';
 import { supabase } from '@/supabase';
-import { setSession, resetSession } from '@/stores/session';
+import { resetSession, getUserProfileFromSession } from '@/stores/session';
 import DefaultLayout from '@/layouts/default';
 import IndexPage from '@/pages/index';
 import DocsPage from '@/pages/docs';
@@ -20,7 +20,7 @@ function App() {
 	useEffect(() => {
 		supabase.auth.onAuthStateChange((_event, session) => {
 			if (session) {
-				dispatch(setSession(session));
+				dispatch(getUserProfileFromSession(session));
 			} else {
 				dispatch(resetSession());
 			}
