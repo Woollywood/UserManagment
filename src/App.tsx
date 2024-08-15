@@ -34,17 +34,17 @@ function App() {
 	return (
 		<Routes>
 			<Route element={<DefaultLayout />}>
-				<Route element={<IndexPage />} path='/' />
-				<Route element={<DocsPage />} path='/docs' />
-				<Route element={<PricingPage />} path='/pricing' />
-				<Route element={<BlogPage />} path='/blog' />
-				<Route element={<AboutPage />} path='/about' />
-				<Route element={<SignIn />} path='/sign-in' />
-				<Route element={<SignUp />} path='/sign-up' />
-				<Route element={<Dashboard />} path='/dashboard' />
-				<Route element={<Settings />} path='/settings' />
-				<Route element={<NewProject />} path='/new-project' />
-				<Route element={<Help />} path='/help' />
+				<Route index element={<IndexPage />} />
+				<Route element={<DocsPage />} path='docs' />
+				<Route element={<PricingPage />} path='pricing' />
+				<Route element={<BlogPage />} path='blog' />
+				<Route element={<AboutPage />} path='about' />
+				<Route element={<SignIn />} path='sign-in' />
+				<Route element={<SignUp />} path='sign-up' />
+				<Route element={<Dashboard />} path='dashboard' />
+				<Route element={<Settings />} path='settings' />
+				<Route element={<NewProject />} path='new-project' />
+				<Route element={<Help />} path='help' />
 			</Route>
 		</Routes>
 	);
