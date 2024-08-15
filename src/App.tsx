@@ -13,6 +13,10 @@ import BlogPage from '@/pages/blog';
 import AboutPage from '@/pages/about';
 import SignIn from '@/pages/signin';
 import SignUp from '@/pages/signup';
+import Dashboard from '@/pages/dashboard';
+import Settings from '@/pages/settings';
+import NewProject from '@/pages/newProject';
+import Help from '@/pages/help';
 
 function App() {
 	const dispatch = useDispatch<AppDispatch>();
@@ -37,6 +41,10 @@ function App() {
 				<Route element={<AboutPage />} path='/about' />
 				<Route element={<SignIn />} path='/sign-in' />
 				<Route element={<SignUp />} path='/sign-up' />
+				<Route element={<Dashboard />} path='/dashboard' />
+				<Route element={<Settings />} path='/settings' />
+				<Route element={<NewProject />} path='/new-project' />
+				<Route element={<Help />} path='/help' />
 			</Route>
 		</Routes>
 	);

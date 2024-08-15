@@ -58,7 +58,7 @@ export default function NavbarUser() {
 								],
 							}}>
 							<DropdownSection showDivider aria-label='Profile & Actions'>
-								<DropdownItem isReadOnly className='h-14 gap-2 opacity-100'>
+								<DropdownItem key='profile' isReadOnly className='h-14 gap-2 opacity-100'>
 									<User
 										avatarProps={{
 											size: 'sm',
@@ -72,15 +72,24 @@ export default function NavbarUser() {
 										name='Junior Garcia'
 									/>
 								</DropdownItem>
-								<DropdownItem key='dashboard'>Dashboard</DropdownItem>
-								<DropdownItem key='settings'>Settings</DropdownItem>
-								<DropdownItem key='new_project' endContent={<PlusIcon className='text-large' />}>
+								<DropdownItem key='dashboard' href='/dashboard'>
+									Dashboard
+								</DropdownItem>
+								<DropdownItem key='settings' href='/settings'>
+									Settings
+								</DropdownItem>
+								<DropdownItem
+									key='new_project'
+									endContent={<PlusIcon className='text-large' />}
+									href='/new-project'>
 									New Project
 								</DropdownItem>
 							</DropdownSection>
 
 							<DropdownSection aria-label='Help & Feedback'>
-								<DropdownItem key='help_and_feedback'>Help & Feedback</DropdownItem>
+								<DropdownItem key='help_and_feedback' href='/help'>
+									Help & Feedback
+								</DropdownItem>
 								<DropdownItem key='logout' onClick={signout}>
 									Log Out
 								</DropdownItem>
