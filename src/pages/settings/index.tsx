@@ -1,7 +1,7 @@
 import Provider from './components/Provider';
 import ProfileTabsWrapper from './components/ProfileTabsWrapper';
 
-export default function SettingsPage() {
+export function Component() {
 	return (
 		<section className='md:py-10'>
 			<Provider>

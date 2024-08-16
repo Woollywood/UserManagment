@@ -13,7 +13,7 @@ type FormData = {
 	password: string;
 };
 
-export default function SignupPage() {
+export function Component() {
 	const navigate = useNavigate();
 	const {
 		register,

@@ -16,7 +16,7 @@ type FormData = {
 	confirmPassword: string;
 };
 
-export default function SignupPage() {
+export function Component() {
 	const [isSuccess, setSuccess] = useState(false);
 	const {
 		register,

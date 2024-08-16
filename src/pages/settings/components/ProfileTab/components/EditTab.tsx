@@ -4,10 +4,9 @@ import { useSelector } from 'react-redux';
 import { Avatar } from '@nextui-org/avatar';
 import { Button } from '@nextui-org/button';
 
-import AvatarSupabase from '@/components/avatar';
-
 import { Context } from '../../Provider';
 
+import AvatarSupabase from '@/components/avatar';
 import { RootState } from '@/store';
 
 export default function EditTab() {
@@ -52,11 +51,16 @@ export default function EditTab() {
 					labelPlacement='outside-left'
 					startContent={
 						<>
-							{avatarUrlTmpUrl && !profile?.avatar_url && (
+							{avatarUrlTmpUrl ? (
 								<Avatar className='-ml-3 flex-shrink-0' radius='lg' src={avatarUrlTmpUrl} />
-							)}
-							{profile?.avatar_url && (
-								<AvatarSupabase className='-ml-3 flex-shrink-0' radius='lg' src={profile.avatar_url} />
+							) : (
+								profile?.avatar_url && (
+									<AvatarSupabase
+										className='-ml-3 flex-shrink-0'
+										radius='lg'
+										src={profile.avatar_url}
+									/>
+								)
 							)}
 						</>
 					}
