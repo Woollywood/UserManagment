@@ -4,13 +4,14 @@ import { useSelector } from 'react-redux';
 import { Avatar } from '@nextui-org/avatar';
 import { Button } from '@nextui-org/button';
 
-import { Context } from '../../Provider';
+import EmailField from './components/EmailField';
 
+import { Context } from '@/pages/settings/components/Provider';
 import AvatarSupabase from '@/components/avatar';
 import { RootState } from '@/store';
 
 export default function EditTab() {
-	const { profile, session } = useSelector((state: RootState) => state.session);
+	const { profile } = useSelector((state: RootState) => state.session);
 	const [avatarUrlTmpUrl, setAvatarUrlTmpUrl] = useState<string | null>(null);
 	const { form, isUpdating } = useContext(Context);
 	const {
@@ -66,15 +67,8 @@ export default function EditTab() {
 					}
 					type='text'
 				/>
-				<Input
-					disabled
-					className='!grid grid-cols-[4fr_12fr]'
-					defaultValue={session?.user.email}
-					errorMessage='The field must contain at least 3 characters'
-					label='E-mail address'
-					labelPlacement='outside-left'
-					type='text'
-				/>
+				<EmailField />
+
 				<Input
 					disabled
 					className='!grid grid-cols-[4fr_12fr]'

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Tabs, Tab } from '@nextui-org/tabs';
 import { Button } from '@nextui-org/button';
 import { clsx } from 'clsx';
+import { enqueueSnackbar } from 'notistack';
 
 import { Context } from './Provider';
 import Preloader from './Preloader';
@@ -20,7 +21,7 @@ const GeneralTab = lazy(() => loadComponentWithDelay('./GeneralTab.tsx'));
 function loadComponentWithDelay(src: string): Promise<{ default: ComponentType<any> }> {
 	return new Promise((resolve) => {
 		setTimeout(() => {
-			resolve(import(src));
+			resolve(import(/* @vite-ignore */ src));
 		}, 600);
 	});
 }
@@ -44,6 +45,7 @@ export default function ProfileTabsWrapper() {
 			}
 
 			await supabase.auth.updateUser({ password: newPassword });
+			enqueueSnackbar('Password changed successfully', { variant: 'success' });
 		}
 
 		const { avatar_url, avatarFile } = formData;

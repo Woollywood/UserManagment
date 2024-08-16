@@ -21,31 +21,33 @@ export default function ChangeTab() {
 
 	return (
 		<div className='grid grid-cols-2 items-center gap-24'>
-			<div className='space-y-6'>
-				<Password
-					className='!grid grid-cols-[4fr_12fr]'
-					isVisible={isVisible}
-					label='Old password'
-					labelPlacement='outside-left'
-					onToggleVisible={() => setVisible((prev) => !prev)}
-					{...register('oldPassword', { required: true })}
-				/>
-				<Password
-					className='!grid grid-cols-[4fr_12fr]'
-					isVisible={isVisible}
-					label='New password'
-					labelPlacement='outside-left'
-					onToggleVisible={() => setVisible((prev) => !prev)}
-					{...register('newPassword', { required: true })}
-				/>
-				<Password
-					className='!grid grid-cols-[4fr_12fr]'
-					isVisible={isVisible}
-					label='Repeat new password'
-					labelPlacement='outside-left'
-					onToggleVisible={() => setVisible((prev) => !prev)}
-					{...register('confirmPassword', { required: true })}
-				/>
+			<div>
+				<form className='space-y-6' onSubmit={(e) => e.preventDefault()}>
+					<Password
+						className='!grid grid-cols-[4fr_12fr]'
+						isVisible={isVisible}
+						label='Old password'
+						labelPlacement='outside-left'
+						onToggleVisible={() => setVisible((prev) => !prev)}
+						{...register('oldPassword', { required: true })}
+					/>
+					<Password
+						className='!grid grid-cols-[4fr_12fr]'
+						isVisible={isVisible}
+						label='New password'
+						labelPlacement='outside-left'
+						onToggleVisible={() => setVisible((prev) => !prev)}
+						{...register('newPassword', { required: true })}
+					/>
+					<Password
+						className='!grid grid-cols-[4fr_12fr]'
+						isVisible={isVisible}
+						label='Repeat new password'
+						labelPlacement='outside-left'
+						onToggleVisible={() => setVisible((prev) => !prev)}
+						{...register('confirmPassword', { required: true })}
+					/>
+				</form>
 			</div>
 			<div>
 				<h2 className='mb-2 text-3xl font-medium'>Password requirements</h2>
