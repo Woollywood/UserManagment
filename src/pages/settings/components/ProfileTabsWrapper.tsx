@@ -16,7 +16,6 @@ import { Database } from '@/types/supabase';
 
 const AccountTab = lazy(() => loadComponentWithDelay('./AccountTab.tsx'));
 const ProfileTab = lazy(() => loadComponentWithDelay('./ProfileTab/index.tsx'));
-const GeneralTab = lazy(() => loadComponentWithDelay('./GeneralTab.tsx'));
 
 function loadComponentWithDelay(src: string): Promise<{ default: ComponentType<any> }> {
 	return new Promise((resolve) => {
@@ -99,11 +98,6 @@ export default function ProfileTabsWrapper() {
 						<Tab key='profile' title='Your profile'>
 							<Suspense fallback={<Preloader />}>
 								<ProfileTab />
-							</Suspense>
-						</Tab>
-						<Tab key='general' title='General settings'>
-							<Suspense fallback={<Preloader />}>
-								<GeneralTab />
 							</Suspense>
 						</Tab>
 					</Tabs>
