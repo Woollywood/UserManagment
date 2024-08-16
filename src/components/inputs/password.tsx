@@ -26,8 +26,6 @@ const Password = forwardRef<HTMLInputElement, Props>(({ isVisible, onToggleVisib
 					)}
 				</button>
 			}
-			label='Password'
-			placeholder='Enter your password'
 			type={isVisible ? 'text' : 'password'}
 		/>
 	);

@@ -1,33 +1,36 @@
+import { useContext } from 'react';
 import { Input } from '@nextui-org/input';
-import { UseFormRegister } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
-import { FormData } from '../index';
+import { Context } from './Provider';
 
-import { Database } from '@/types/supabase';
+import { RootState } from '@/store';
 
-interface Props {
-	profile: Database['public']['Tables']['profiles']['Row'];
-	isUpdating: boolean;
-	register: UseFormRegister<FormData>;
-}
+export default function AccountTab() {
+	const { profile } = useSelector((state: RootState) => state.session);
+	const { form, isUpdating } = useContext(Context);
+	const {
+		formState: { errors },
+		register,
+	} = form!;
 
-export default function AccountTab({ profile, register, isUpdating }: Props) {
 	return (
 		<div className='grid grid-cols-2 gap-6'>
 			<div className='space-y-6'>
 				<Input
-					disabled
 					className='!grid grid-cols-[4fr_12fr]'
-					defaultValue={profile.website!}
+					defaultValue={profile?.website!}
+					disabled={isUpdating}
 					label='Website'
 					labelPlacement='outside-left'
 					placeholder='https://'
 					type='text'
+					{...register('website')}
 				/>
 				<Input
 					disabled
 					className='!grid grid-cols-[4fr_12fr]'
-					defaultValue={profile.updated_at!}
+					defaultValue={profile?.updated_at!}
 					label='Updated'
 					labelPlacement='outside-left'
 					placeholder='never'
@@ -38,20 +41,22 @@ export default function AccountTab({ profile, register, isUpdating }: Props) {
 				<Input
 					disabled
 					className='!grid grid-cols-[4fr_12fr]'
-					defaultValue={profile.id!}
+					defaultValue={profile?.id!}
 					label='Account ID'
 					labelPlacement='outside-left'
 					type='text'
 				/>
 				<Input
 					className='!grid grid-cols-[4fr_12fr]'
-					defaultValue={profile.full_name!}
+					defaultValue={profile?.full_name!}
 					disabled={isUpdating}
+					errorMessage='The field must contain at least 3 characters'
+					isInvalid={!!errors.full_name}
 					label='Name'
 					labelPlacement='outside-left'
 					placeholder='Type your name'
 					type='text'
-					{...register('full_name')}
+					{...register('full_name', { required: true, minLength: 3 })}
 				/>
 			</div>
 		</div>

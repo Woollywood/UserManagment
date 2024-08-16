@@ -45,6 +45,7 @@ export default function SignupPage() {
 						errorMessage='Please enter a valid email'
 						isInvalid={!!errors.email}
 						label='Email'
+						placeholder='Enter your email'
 						type='text'
 						{...register('email', {
 							required: true,
@@ -57,6 +58,8 @@ export default function SignupPage() {
 						isInvalid={!!errors.password}
 						isVisible={isVisiblePassword}
 						{...register('password', { required: true })}
+						label='Password'
+						placeholder='Enter your password'
 						onToggleVisible={togglePasswordVisibility}
 					/>
 

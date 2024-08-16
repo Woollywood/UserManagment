@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 import { Button } from '@nextui-org/button';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem } from '@nextui-org/dropdown';
-import { Avatar } from '@nextui-org/avatar';
 import { User } from '@nextui-org/user';
 import { Skeleton } from '@nextui-org/skeleton';
 import { Link } from '@nextui-org/link';
 
+import Avatar from './avatar';
 import { PlusIcon } from './icons';
 
 import { RootState } from '@/store';
@@ -59,18 +59,21 @@ export default function NavbarUser() {
 							}}>
 							<DropdownSection showDivider aria-label='Profile & Actions'>
 								<DropdownItem key='profile' isReadOnly className='h-14 gap-2 opacity-100'>
-									<User
-										avatarProps={{
-											size: 'sm',
-											src: profile?.avatar_url!,
-										}}
-										classNames={{
-											name: 'text-default-600',
-											description: 'text-default-500',
-										}}
-										description={`@${profile?.username}`}
-										name={profile?.full_name!}
-									/>
+									<div className='inline-flex items-center justify-center gap-2'>
+										<Avatar
+											isBordered
+											as='button'
+											className='ml-1 mt-0.5 transition-transform'
+											color='secondary'
+											name={profile?.full_name!}
+											size='sm'
+											src={profile?.avatar_url!}
+										/>
+										<div className='inline-flex flex-col items-start'>
+											<span className='text-small text-default-600'>{`@${profile?.username}`}</span>
+											<span className='text-tiny text-default-500'>{profile?.full_name!}</span>
+										</div>
+									</div>
 								</DropdownItem>
 								<DropdownItem key='dashboard' href='/dashboard'>
 									Dashboard

@@ -91,6 +91,7 @@ export default function SignupPage() {
 							errorMessage='Please enter a first name'
 							isInvalid={!!errors.firstName}
 							label='First name'
+							placeholder='Enter your first name'
 							type='text'
 							{...register('firstName', { required: true })}
 						/>
@@ -98,6 +99,7 @@ export default function SignupPage() {
 							errorMessage='Please enter a last name'
 							isInvalid={!!errors.lastName}
 							label='Last name'
+							placeholder='Enter your last name'
 							type='text'
 							{...register('lastName', { required: true })}
 						/>
@@ -106,6 +108,7 @@ export default function SignupPage() {
 						errorMessage='Please enter a username'
 						isInvalid={!!errors.username}
 						label='Username'
+						placeholder='Enter your username'
 						type='text'
 						{...register('username', {
 							required: true,
@@ -115,6 +118,7 @@ export default function SignupPage() {
 						errorMessage='Please enter a valid email'
 						isInvalid={!!errors.email}
 						label='Email'
+						placeholder='Enter your email'
 						type='text'
 						{...register('email', {
 							required: true,
@@ -127,6 +131,8 @@ export default function SignupPage() {
 						isInvalid={!!errors.password}
 						isVisible={isVisiblePassword}
 						{...register('password', { required: true })}
+						label='password'
+						placeholder='Enter your password'
 						onToggleVisible={togglePasswordVisibility}
 					/>
 					<Password
@@ -134,6 +140,8 @@ export default function SignupPage() {
 						isInvalid={!!errors.confirmPassword}
 						isVisible={isVisiblePassword}
 						{...register('confirmPassword', { required: true })}
+						label='confirm password'
+						placeholder='Confirm your password'
 						onToggleVisible={togglePasswordVisibility}
 					/>
 					<Button type='submit'>Create Account</Button>
