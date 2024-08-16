@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Link } from '@nextui-org/link';
 import { Input } from '@nextui-org/input';
 import { Button } from '@nextui-org/button';
@@ -6,6 +7,7 @@ import { useForm } from 'react-hook-form';
 
 import Password from '@/components/inputs/password';
 import { supabase } from '@/supabase';
+import { useAuthPrevent } from '@/hooks/useAuthPrevent';
 
 type FormData = {
 	firstName: string;
@@ -17,6 +19,10 @@ type FormData = {
 };
 
 export function Component() {
+	useAuthPrevent();
+	const { state } = useLocation();
+	const navigate = useNavigate();
+
 	const [isSuccess, setSuccess] = useState(false);
 	const {
 		register,
@@ -82,7 +88,15 @@ export function Component() {
 				<h1 className='mb-4 font-sans text-6xl font-medium capitalize'>Create new account</h1>
 				<div className='text-md mb-12'>
 					<p>
-						Already A Member? <Link href='/sign-in'>Sign in</Link>
+						Already A Member?{' '}
+						<Link
+							href='/sign-in'
+							onClick={(e) => {
+								e.preventDefault();
+								navigate('/sign-in', { state });
+							}}>
+							Sign in
+						</Link>
 					</p>
 				</div>
 				<form className='space-y-4' onSubmit={onSubmit}>

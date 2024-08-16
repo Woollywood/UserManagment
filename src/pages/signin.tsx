@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Link } from '@nextui-org/link';
 import { Input } from '@nextui-org/input';
 import { Button } from '@nextui-org/button';
@@ -7,6 +6,7 @@ import { useForm } from 'react-hook-form';
 
 import Password from '@/components/inputs/password';
 import { supabase } from '@/supabase';
+import { useAuthPrevent } from '@/hooks/useAuthPrevent';
 
 type FormData = {
 	email: string;
@@ -14,7 +14,8 @@ type FormData = {
 };
 
 export function Component() {
-	const navigate = useNavigate();
+	useAuthPrevent();
+
 	const {
 		register,
 		handleSubmit,
@@ -25,7 +26,6 @@ export function Component() {
 			email,
 			password,
 		});
-		navigate({ pathname: '/' });
 	});
 
 	const [isVisiblePassword, setIsVisiblePassword] = useState(false);
