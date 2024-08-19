@@ -1,5 +1,6 @@
 import Provider from './components/Provider';
 import ProfileTabsWrapper from './components/ProfileTabsWrapper';
+import UsersTable from './components/UsersTable';
 
 export function Component() {
 	return (
@@ -7,7 +8,7 @@ export function Component() {
 			<Provider>
 				<ProfileTabsWrapper />
 			</Provider>
-			<div className='rounded-lg p-4 shadow-lg ring-1 ring-inset ring-content4'>Users table</div>
+			<UsersTable />
 		</section>
 	);
 }
